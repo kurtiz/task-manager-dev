@@ -30,7 +30,7 @@ const Header = () => {
             },
             method: "POST",
             body: JSON.stringify({
-                id: auth.user?.profile.sub
+                id:  auth.user?.profile.sub
             }),
         }).then(
             (response) => {
@@ -72,7 +72,7 @@ const Header = () => {
                         className="overflow-hidden rounded-full"
                     >
                         <Avatar>
-                            <AvatarImage src={avatar}/>
+                            <AvatarImage src={avatar} />
                             <AvatarFallback>{user?.name?.substring(0, 1) || user?.email?.substring(0, 1)} </AvatarFallback>
                         </Avatar>
 
