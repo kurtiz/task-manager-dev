@@ -1,0 +1,14 @@
+import {useEffect} from "react";
+
+const Logout = () => {
+    useEffect(() => {
+        localStorage.clear();
+        sessionStorage.clear();
+    }, []);
+    return (
+        <div>
+        </div>
+    );
+};
+
+export default Logout;

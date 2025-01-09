@@ -1,0 +1,126 @@
+{
+  "statusCode": 200,
+  "body": "\"Hello from Lambda!\"",
+  "event": {
+    "resource": "/create-task",
+    "path": "/create-task",
+    "httpMethod": "GET",
+    "headers": {
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+      "accept-encoding": "gzip, deflate, br, zstd",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "max-age=0",
+      "Host": "6s1ecgh7jg.execute-api.eu-west-1.amazonaws.com",
+      "priority": "u=0, i",
+      "sec-ch-ua": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\"",
+      "sec-fetch-dest": "document",
+      "sec-fetch-mode": "navigate",
+      "sec-fetch-site": "none",
+      "sec-fetch-user": "?1",
+      "upgrade-insecure-requests": "1",
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+      "X-Amzn-Trace-Id": "Root=1-677bad6e-065761cd238b26803c09c74d",
+      "X-Forwarded-For": "197.159.140.9",
+      "X-Forwarded-Port": "443",
+      "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+      "accept": [
+        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+      ],
+      "accept-encoding": [
+        "gzip, deflate, br, zstd"
+      ],
+      "accept-language": [
+        "en-US,en;q=0.9"
+      ],
+      "cache-control": [
+        "max-age=0"
+      ],
+      "Host": [
+        "6s1ecgh7jg.execute-api.eu-west-1.amazonaws.com"
+      ],
+      "priority": [
+        "u=0, i"
+      ],
+      "sec-ch-ua": [
+        "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+      ],
+      "sec-ch-ua-mobile": [
+        "?0"
+      ],
+      "sec-ch-ua-platform": [
+        "\"Windows\""
+      ],
+      "sec-fetch-dest": [
+        "document"
+      ],
+      "sec-fetch-mode": [
+        "navigate"
+      ],
+      "sec-fetch-site": [
+        "none"
+      ],
+      "sec-fetch-user": [
+        "?1"
+      ],
+      "upgrade-insecure-requests": [
+        "1"
+      ],
+      "User-Agent": [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+      ],
+      "X-Amzn-Trace-Id": [
+        "Root=1-677bad6e-065761cd238b26803c09c74d"
+      ],
+      "X-Forwarded-For": [
+        "197.159.140.9"
+      ],
+      "X-Forwarded-Port": [
+        "443"
+      ],
+      "X-Forwarded-Proto": [
+        "https"
+      ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+      "resourceId": "iprth2",
+      "resourcePath": "/create-task",
+      "httpMethod": "GET",
+      "extendedRequestId": "D9gJSHmdDoEEI0g=",
+      "requestTime": "06/Jan/2025:10:16:14 +0000",
+      "path": "/dev/create-task",
+      "accountId": "537124942586",
+      "protocol": "HTTP/1.1",
+      "stage": "dev",
+      "domainPrefix": "6s1ecgh7jg",
+      "requestTimeEpoch": 1736158574252,
+      "requestId": "6e735387-612e-4e7c-9fa5-ba1a1eb9b96e",
+      "identity": {
+        "cognitoIdentityPoolId": null,
+        "accountId": null,
+        "cognitoIdentityId": null,
+        "caller": null,
+        "sourceIp": "197.159.140.9",
+        "principalOrgId": null,
+        "accessKey": null,
+        "cognitoAuthenticationType": null,
+        "cognitoAuthenticationProvider": null,
+        "userArn": null,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "user": null
+      },
+      "domainName": "6s1ecgh7jg.execute-api.eu-west-1.amazonaws.com",
+      "deploymentId": "q3cv8l",
+      "apiId": "6s1ecgh7jg"
+    },
+    "body": null,
+    "isBase64Encoded": false
+  }
+}
