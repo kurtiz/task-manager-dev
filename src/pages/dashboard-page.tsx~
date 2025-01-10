@@ -1,11 +1,12 @@
 import {Users} from "lucide-react";
 import {MdOutlinePendingActions} from "react-icons/md";
-import {LuClipboardCheck, LuClipboardList} from "react-icons/lu";
+import {LuClipboardList, LuClipboardCheck} from "react-icons/lu";
 import {useEffect, useState} from "react";
 import {useAuth} from "react-oidc-context";
 import {API_URL} from "@/constants.ts";
 import {useNavigate} from "react-router-dom";
 import StatisticsCard from "@/components/statistics-card.tsx";
+import {Skeleton} from "@/components/ui/skeleton.tsx";
 
 const DashboardPage = () => {
     const [isLoading, setIsLoading] = useState(true);

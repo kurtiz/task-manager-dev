@@ -68,7 +68,7 @@ const TasksPage = () => {
         }) : [];
 
     return (
-        <div className="mx-4 my-3 ml-6">
+        <div className="mx-4 my-3 ml-3">
             <p className="text-l font-black mb-4">Tasks</p>
             <div className="flex">
                 <div className="flex w-full gap-3">
