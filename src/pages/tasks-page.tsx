@@ -14,6 +14,8 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import NoTasks from "@/components/no-tasks.tsx";
+import MiniNoTasks from "@/components/mini-no-tasks.tsx";
 
 const TasksPage = () => {
     const [view, setView] = useState<"free" | "grouped">("grouped");
@@ -53,16 +55,17 @@ const TasksPage = () => {
     };
 
     // Sort tasks based on selected criteria (dueDate or createdAt) and order (asc or desc)
-    const sortedTasks = [...tasks].sort((a, b) => {
-        const dateA = new Date(sortType === "dueDate" ? a.due_date : a.createdAt); // Change completed_date to createdAt
-        const dateB = new Date(sortType === "dueDate" ? b.due_date : b.createdAt); // Change completed_date to createdAt
+    const sortedTasks = (tasks.length > 0) ?
+        [...tasks].sort((a, b) => {
+            const dateA = new Date(sortType === "dueDate" ? a.due_date : a.createdAt); // Change completed_date to createdAt
+            const dateB = new Date(sortType === "dueDate" ? b.due_date : b.createdAt); // Change completed_date to createdAt
 
-        if (sortOrder === "asc") {
-            return dateA.getTime() - dateB.getTime();
-        } else {
-            return dateB.getTime() - dateA.getTime();
-        }
-    });
+            if (sortOrder === "asc") {
+                return dateA.getTime() - dateB.getTime();
+            } else {
+                return dateB.getTime() - dateA.getTime();
+            }
+        }) : [];
 
     return (
         <div className="mx-4 my-3 ml-6">
@@ -129,7 +132,7 @@ const TasksPage = () => {
 
             {isLoading ? (
                 <Loading/>
-            ) : tasks.length > 0 ? (
+            ) : sortedTasks.length > 0 ? (
                 view === "free" ? (
                     <div
                         className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 motion-preset-slide-right">
@@ -151,66 +154,67 @@ const TasksPage = () => {
                         <p className="text-l font-bold motion-preset-slide-right">Backlog</p>
                         <div
                             className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 motion-preset-slide-right motion-delay-75">
-                            {sortedTasks
-                                .filter((task) => task.status === "Backlog")
-                                .map((task) => (
-                                    <TaskCard
-                                        key={task.id}
-                                        taskId={task.id}
-                                        title={task.title}
-                                        priority={task.priority}
-                                        status={task.status}
-                                        dueDate={task.due_date}
-                                        assignedTo={task.assigned_to}
-                                        createdAt={task.createdAt}
-                                    />
-                                ))}
+                            {
+                                sortedTasks.filter((task) => task.status === "Backlog").length > 0 ? sortedTasks
+                                    .filter((task) => task.status === "Backlog")
+                                    .map((task) => (
+                                        <TaskCard
+                                            key={task.id}
+                                            taskId={task.id}
+                                            title={task.title}
+                                            priority={task.priority}
+                                            status={task.status}
+                                            dueDate={task.due_date}
+                                            assignedTo={task.assigned_to}
+                                            createdAt={task.createdAt}
+                                        />
+                                    )) : <MiniNoTasks/>
+                            }
                         </div>
                         <p className="text-l font-bold mt-4 motion-preset-slide-right motion-delay-[100ms]">Pending</p>
                         <div
                             className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 motion-preset-slide-right motion-delay-[110ms]">
-                            {sortedTasks
-                                .filter((task) => task.status === "Pending")
-                                .map((task) => (
-                                    <TaskCard
-                                        key={task.id}
-                                        taskId={task.id}
-                                        title={task.title}
-                                        priority={task.priority}
-                                        status={task.status}
-                                        dueDate={task.due_date}
-                                        assignedTo={task.assigned_to}
-                                        createdAt={task.createdAt}
-                                    />
-                                ))}
+                            {
+                                sortedTasks.filter((task) => task.status === "Pending").length > 0 ? sortedTasks
+                                    .filter((task) => task.status === "Pending")
+                                    .map((task) => (
+                                        <TaskCard
+                                            key={task.id}
+                                            taskId={task.id}
+                                            title={task.title}
+                                            priority={task.priority}
+                                            status={task.status}
+                                            dueDate={task.due_date}
+                                            assignedTo={task.assigned_to}
+                                            createdAt={task.createdAt}
+                                        />
+                                    )) : <MiniNoTasks/>
+                            }
                         </div>
                         <p className="text-l font-bold mt-4 motion-preset-slide-right motion-delay-[140ms]">Completed</p>
                         <div
                             className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 motion-preset-slide-right motion-delay-[180ms]">
-                            {sortedTasks
-                                .filter((task) => task.status === "Completed")
-                                .map((task) => (
-                                    <TaskCard
-                                        key={task.id}
-                                        taskId={task.id}
-                                        title={task.title}
-                                        priority={task.priority}
-                                        status={task.status}
-                                        dueDate={task.due_date}
-                                        assignedTo={task.assigned_to}
-                                        createdAt={task.createdAt}
-                                    />
-                                ))}
+                            {
+                                sortedTasks.filter((task) => task.status === "Completed").length > 0 ? sortedTasks
+                                    .filter((task) => task.status === "Completed")
+                                    .map((task) => (
+                                        <TaskCard
+                                            key={task.id}
+                                            taskId={task.id}
+                                            title={task.title}
+                                            priority={task.priority}
+                                            status={task.status}
+                                            dueDate={task.due_date}
+                                            assignedTo={task.assigned_to}
+                                            createdAt={task.createdAt}
+                                        />
+                                    )) : <MiniNoTasks/>
+                            }
                         </div>
                     </div>
                 )
             ) : (
-                <div className="flex h-[70vh] items-center justify-center">
-                    <div className="flex flex-col items-center">
-                        <img src="/no-tasks.png" alt="no tasks" className="h-1/3 w-1/3 mx-auto"/>
-                        <p className="text-lg font-semibold">No Tasks</p>
-                    </div>
-                </div>
+                <NoTasks/>
             )}
         </div>
     );
