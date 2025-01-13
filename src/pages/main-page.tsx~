@@ -1,15 +1,16 @@
-import {Navigate, Outlet, useLocation} from "react-router-dom";
+import {Navigate, Outlet} from "react-router-dom";
 import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar.tsx";
 import AppSidebar from "@/components/app-sidebar.tsx";
 import Header from "@/components/header.tsx";
 import {Toaster} from "@/components/ui/toaster.tsx";
 import {useAuth} from "react-oidc-context";
 import Loading from "@/components/loading.tsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {API_URL} from "@/constants.ts";
 
 const MainPage = () => {
     const auth = useAuth();
+    const [userRole, setUserRole] = useState<string>("member");
 
     useEffect(() => {
         // Only fetch user role if it's not set in localStorage
@@ -26,6 +27,7 @@ const MainPage = () => {
                     if (data?.role) {
                         localStorage.setItem("u-role", data.role);
                     }
+                    setUserRole(localStorage.getItem("u-role")! || "member");
                 })
                 .catch((error) => {
                     console.error("Failed to fetch user role:", error);
@@ -40,8 +42,6 @@ const MainPage = () => {
     if (!auth.isAuthenticated) {
         return <Navigate to="/auth" replace/>;
     }
-
-    const userRole = localStorage.getItem("u-role");
 
     return (
         <SidebarProvider>
