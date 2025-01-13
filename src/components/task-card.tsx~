@@ -45,8 +45,7 @@ const TaskCard = ({...props}) => {
 
                                 <DropdownMenu>
                                     <DropdownMenuTrigger>
-                                        <Button variant="ghost" className="z-20"><BsThreeDots
-                                            className="w-5 h-5"/></Button>
+                                        <Button variant="ghost" className="z-20"><BsThreeDots className="w-5 h-5"/></Button>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent>
 
@@ -104,14 +103,11 @@ const TaskCard = ({...props}) => {
                     </ContextMenuItem>
 
                     {/* DialogTrigger inside ContextMenuItem to trigger delete confirmation */}
-                    {
-                        userRole === "admin" &&
-                        <DialogTrigger asChild>
-                            <ContextMenuItem>
-                                <Trash className="w-4 h-4 mr-3 text-gray-500"/>Delete
-                            </ContextMenuItem>
-                        </DialogTrigger>
-                    }
+                    <DialogTrigger asChild>
+                        <ContextMenuItem>
+                            <Trash className="w-4 h-4 mr-3 text-gray-500"/>Delete
+                        </ContextMenuItem>
+                    </DialogTrigger>
                 </ContextMenuContent>
             </ContextMenu>
 

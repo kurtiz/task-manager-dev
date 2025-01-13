@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import NoTasks from "@/components/no-tasks.tsx";
 import MiniNoTasks from "@/components/mini-no-tasks.tsx";
+import {useToast} from "@/hooks/use-toast.ts";
 
 const TasksPage = () => {
     const [view, setView] = useState<"free" | "grouped">("grouped");
@@ -25,6 +26,7 @@ const TasksPage = () => {
     const [sortType, setSortType] = useState<"dueDate" | "createdAt">("dueDate"); // Change completedDate to createdAt
     const navigateTo = useNavigate();
     const auth = useAuth();
+    const {toast} = useToast();
 
     useEffect(() => {
         fetch(`${API_URL}/tasks`, {
@@ -54,10 +56,41 @@ const TasksPage = () => {
         setSortType(type);
     };
 
+    const handleDeleteTask = async (taskId: string) => {
+        toast({
+            title: "Deleting!",
+            description: "Deleting task!",
+            action: <div className="animate-spin rounded-full border-b-2 border-blue-500 h-5 w-5 mr-3"/>
+        });
+
+        fetch(`${API_URL}/task/delete/${taskId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${auth.user?.access_token}`
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    setTasks((prevTasks) => prevTasks.filter(task => task.id !== taskId));
+                    toast({
+                        title: "Deleted!",
+                        description: "Task deleted successfully",
+                    });
+                } else {
+                    toast({
+                        title: "Error!",
+                        description: "An error occurred while deleting the task!",
+                    });
+                }
+            })
+    }
+
     // Sort tasks based on selected criteria (dueDate or createdAt) and order (asc or desc)
     const sortedTasks = (tasks.length > 0) ?
         [...tasks].sort((a, b) => {
             const dateA = new Date(sortType === "dueDate" ? a.due_date : a.createdAt); // Change completed_date to createdAt
+
             const dateB = new Date(sortType === "dueDate" ? b.due_date : b.createdAt); // Change completed_date to createdAt
 
             if (sortOrder === "asc") {
@@ -146,6 +179,7 @@ const TasksPage = () => {
                                 dueDate={task.due_date}
                                 assignedTo={task.assigned_to}
                                 createdAt={task.createdAt}
+                                onDelete={handleDeleteTask}
                             />
                         ))}
                     </div>
@@ -167,6 +201,7 @@ const TasksPage = () => {
                                             dueDate={task.due_date}
                                             assignedTo={task.assigned_to}
                                             createdAt={task.createdAt}
+                                            onDelete={handleDeleteTask}
                                         />
                                     )) : <MiniNoTasks/>
                             }
@@ -187,6 +222,7 @@ const TasksPage = () => {
                                             dueDate={task.due_date}
                                             assignedTo={task.assigned_to}
                                             createdAt={task.createdAt}
+                                            onDelete={handleDeleteTask}
                                         />
                                     )) : <MiniNoTasks/>
                             }
@@ -207,6 +243,7 @@ const TasksPage = () => {
                                             dueDate={task.due_date}
                                             assignedTo={task.assigned_to}
                                             createdAt={task.createdAt}
+                                            onDelete={handleDeleteTask}
                                         />
                                     )) : <MiniNoTasks/>
                             }

@@ -1,6 +1,8 @@
 import {
     Sidebar,
-    SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel,
+    SidebarContent,
+    SidebarGroup,
+    SidebarGroupContent,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
@@ -11,8 +13,8 @@ import {ChevronDown, LayoutDashboardIcon, LucideBookOpenCheck} from "lucide-reac
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
 
 
-const AppSidebar = () => {
-
+const AppSidebar = ({...props}) => {
+    const {role} = props;
     const location = useLocation().pathname;
 
     const tasksLinks = [

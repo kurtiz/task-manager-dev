@@ -13,8 +13,8 @@ import {ChevronDown, LayoutDashboardIcon, LucideBookOpenCheck} from "lucide-reac
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
 
 
-const AppSidebar = () => {
-
+const AppSidebar = ({...props}) => {
+    const {role} = props;
     const location = useLocation().pathname;
 
     const tasksLinks = [
@@ -36,14 +36,16 @@ const AppSidebar = () => {
             </SidebarHeader>
             <SidebarContent className="px-3">
                 <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton asChild className={active(location === "/dashboard")}>
-                            <NavLink to="/dashboard">
-                                <LayoutDashboardIcon/> <span>Dashboard</span>
-                            </NavLink>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-
+                    {
+                        (role === "admin") &&
+                        <SidebarMenuItem>
+                            <SidebarMenuButton asChild className={active(location === "/dashboard")}>
+                                <NavLink to="/dashboard">
+                                    <LayoutDashboardIcon/> <span>Dashboard</span>
+                                </NavLink>
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                    }
                     {/* Tasks Tab with collapsible sub-tabs */}
                     <Collapsible className="group/collapsible">
                         <CollapsibleTrigger className="w-full">
@@ -70,13 +72,16 @@ const AppSidebar = () => {
                                             <NavLink to="/dashboard/tasks">View Tasks</NavLink>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
-                                    <SidebarMenuItem>
-                                        <SidebarMenuButton
-                                            asChild
-                                            className={`${active(location === "/dashboard/tasks/create")} pl-4`}>
-                                            <NavLink to="/dashboard/tasks/create">Create Task</NavLink>
-                                        </SidebarMenuButton>
-                                    </SidebarMenuItem>
+                                    {
+                                        (role === "admin") &&
+                                        <SidebarMenuItem>
+                                            <SidebarMenuButton
+                                                asChild
+                                                className={`${active(location === "/dashboard/tasks/create")} pl-4`}>
+                                                <NavLink to="/dashboard/tasks/create">Create Task</NavLink>
+                                            </SidebarMenuButton>
+                                        </SidebarMenuItem>
+                                    }
                                 </SidebarGroupContent>
                             </SidebarGroup>
                         </CollapsibleContent>
